@@ -3,6 +3,8 @@ package dadm.jmartor.QuotationShake.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import dadm.jmartor.QuotationShake.databinding.ActivityMainBinding
 
@@ -17,5 +19,8 @@ class MainActivity : AppCompatActivity() {
         val navController = binding.fragmentContainerView.getFragment<NavHostFragment>().navController
 
         binding.bnvInicial.setupWithNavController(navController)
+
+        setSupportActionBar(binding.materialToolbar5)
+        setupActionBarWithNavController(navController, AppBarConfiguration(navController.graph))
     }
 }
