@@ -31,8 +31,9 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
                 android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="50dp"
                 app:defaultNavHost="true"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingVewBehavior"
                 app:layout_constraintBottom_toTopOf="@+id/bnvInicial"
