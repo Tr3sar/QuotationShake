@@ -4,4 +4,6 @@
     <string name="favourites">Favorites</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+    <string name="aboutMe"> QuotationShake by Josep \n\n jmartor@inf.upv.es \n\n Developed for DADM 2023 </string>
+    <string name="logo_description">Logo de QuotationShake</string>
 </resources>
