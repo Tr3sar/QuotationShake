@@ -20,6 +20,30 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation) {
         viewModel.userName.observe(viewLifecycleOwner) { userName ->
             binding.mtBienvenida.text = getString(R.string.welcomeMessage, userName)
         }
+
+        viewModel.iconoVisible.observe(viewLifecycleOwner) {iconoVisible ->
+            binding.swipeToRefresh.isRefreshing = iconoVisible
+        }
+
+        viewModel.welcomeMessage.observe(viewLifecycleOwner) {welcomeMessage ->
+            binding.mtBienvenida.visibility = if (welcomeMessage) View.VISIBLE else View.INVISIBLE
+        }
+
+        viewModel.quotation.observe(viewLifecycleOwner) { quotation ->
+            if (quotation.autorCita.isNullOrBlank()) { binding.mtAutor.text = "Anonymous" }
+            else { binding.mtAutor.text = quotation.autorCita}
+
+            binding.mtCitaRecibida.text = quotation.nombreCita
+
+        }
+
+        binding.swipeToRefresh.setOnRefreshListener() {
+            getNewQuotation()
+        }
+    }
+
+    private fun getNewQuotation() {
+        viewModel.getNewQuotation()
     }
 
     override fun onDestroyView() {
