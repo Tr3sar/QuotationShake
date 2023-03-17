@@ -10,6 +10,7 @@ class NewQuotationViewModel: ViewModel() {
     private val _username: MutableLiveData<String> = MutableLiveData<String>(getUserName())
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
     private val _iconoVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    private val _botonVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
 
 
     val userName: LiveData<String>
@@ -32,6 +33,11 @@ class NewQuotationViewModel: ViewModel() {
             return Transformations.map(quotation) { it == null }
         }
 
+    val botonVisible: LiveData<Boolean>
+        get() {
+            return _botonVisible
+        }
+
 
     fun getNewQuotation() {
         _iconoVisible.value = true
@@ -41,6 +47,11 @@ class NewQuotationViewModel: ViewModel() {
 
 
         _iconoVisible.value = false
+        _botonVisible.value = true
+    }
+
+    fun addToFavorites() {
+        _botonVisible.value = false
     }
 
     private fun getUserName(): String {

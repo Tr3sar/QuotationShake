@@ -2,10 +2,7 @@ package dadm.jmartor.QuotationShake.ui.newquotation
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -35,6 +32,10 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
             binding.mtBienvenida.visibility = if (welcomeMessage) View.VISIBLE else View.INVISIBLE
         }
 
+        viewModel.botonVisible.observe(viewLifecycleOwner) { botonVisible ->
+            binding.botonFav.visibility = if (botonVisible) View.VISIBLE else View.INVISIBLE
+        }
+
         viewModel.quotation.observe(viewLifecycleOwner) { quotation ->
             if (quotation.autorCita.isNullOrBlank()) { binding.mtAutor.text = "Anonymous" }
             else { binding.mtAutor.text = quotation.autorCita}
@@ -46,6 +47,10 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
             getNewQuotation()
         }
 
+        binding.botonFav.setOnClickListener() {
+            addTofavorites()
+        }
+
         //Exercisi 12
         requireActivity().addMenuProvider(this,
             viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -53,6 +58,10 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
 
     private fun getNewQuotation() {
         viewModel.getNewQuotation()
+    }
+
+    private fun addTofavorites() {
+        viewModel.addToFavorites()
     }
 
     override fun onDestroyView() {
