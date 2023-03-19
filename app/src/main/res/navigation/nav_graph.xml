@@ -15,7 +15,11 @@
         android:name="dadm.jmartor.QuotationShake.ui.favourites.NewFavouritesFragment"
         android:label="@string/favourites"
         tools:layout="@layout/fragment_favourites"
-        />
+        >
+        <action
+            android:id="@+id/action_newFavouritesFragment_to_deleteAllDialogFragment"
+            app:destination="@id/deleteAllDialogFragment" />
+    </fragment>
     <fragment
         android:id="@+id/newSettingsFragment"
         android:name="dadm.jmartor.QuotationShake.ui.settings.NewSettingsFragment"
@@ -27,5 +31,10 @@
         android:name="dadm.jmartor.QuotationShake.ui.about.AboutDialogFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_about"
+        />
+    <dialog
+        android:id="@+id/deleteAllDialogFragment"
+        android:name="dadm.jmartor.QuotationShake.ui.favourites.DeleteAllDialogFragment"
+        android:label="@string/eliminar_todos"
         />
 </navigation>

@@ -9,4 +9,5 @@
 
     <string name="welcomeMessage">Hello %1s!, \n\nRefresh to get a new quotation\n\n(swipe down or options menu)</string>
     <string name="refresh">Refresh</string>
+    <string name="eliminar_todos">Eliminar todos</string>
 </resources>
