@@ -35,4 +35,10 @@ class FavouritesViewModel : ViewModel() {
     fun dismiss() {
 
     }
+
+    fun deleteQuotationAtPost(position: Int) {
+        val list = _favList.value?.toMutableList()
+        list?.removeAt(position)
+        _favList.value = list!!
+    }
 }
