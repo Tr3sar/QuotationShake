@@ -1,5 +1,8 @@
 package dadm.jmartor.QuotationShake.ui.favourites
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.END
 import androidx.recyclerview.widget.ItemTouchHelper.SimpleCallback
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import dadm.jmartor.QuotationShake.R
 import dadm.jmartor.QuotationShake.databinding.FragmentFavouritesBinding
 
@@ -47,12 +51,28 @@ class NewFavouritesFragment: Fragment(R.layout.fragment_favourites), MenuProvide
         }
     })
 
+    private val itemClicked = object: ItemClicked {
+        override fun onClick(author: String) {
+            if (author == "Anonymous") {
+                Snackbar.make(binding.root, "No es posible mostrar información si el autor es anónimo.", Snackbar.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + author)
+                try{
+                    startActivity(intent)
+                } catch( e: ActivityNotFoundException) {
+                    Snackbar.make(binding.root, "No es posible gestionar la acción solicitada.", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentFavouritesBinding.bind(view);
 
-        val adapter = QuotationListAdapter()
+        val adapter = QuotationListAdapter(itemClicked)
         binding.recyclerViewFavs.adapter = adapter
 
         viewModel.favList.observe(viewLifecycleOwner) {favList ->

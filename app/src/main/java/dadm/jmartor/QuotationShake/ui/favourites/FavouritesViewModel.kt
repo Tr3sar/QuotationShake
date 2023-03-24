@@ -25,6 +25,8 @@ class FavouritesViewModel : ViewModel() {
             quotations.add(Quotation("Index $num", "Cita $num", "Autor $num"))
         }
 
+        quotations.add(Quotation("Index 100", "Dos cosas son infinitas: la estupidez humana y el universo; y no estoy seguro de lo segundo.", "Albert Einstein"))
+        quotations.add(Quotation("Index 101", "Tu lo que tienes que hacer es presentarle un plan al ayuntamiento", "Anonymous"))
         return quotations
     }
 
