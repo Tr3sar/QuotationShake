@@ -9,7 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import dadm.jmartor.QuotationShake.R
 import dadm.jmartor.QuotationShake.databinding.FragmentNewQuotationBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvider {
     private var _binding: FragmentNewQuotationBinding? = null;
     private val binding get() = _binding!!;

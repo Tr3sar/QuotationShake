@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FavouritesViewModel : ViewModel() {
+@HiltViewModel
+class FavouritesViewModel @Inject constructor() : ViewModel() {
 
     private val _favList = MutableLiveData<List<Quotation>>(getFavouriteQuotations())
 

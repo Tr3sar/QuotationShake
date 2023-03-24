@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class NewQuotationViewModel: ViewModel() {
+@HiltViewModel
+class NewQuotationViewModel @Inject() constructor(): ViewModel() {
     private val _username: MutableLiveData<String> = MutableLiveData<String>(getUserName())
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
     private val _iconoVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
