@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_quotation">Citas</string>
+    <string name="favourites">Favoritas</string>
+    <string name="settings">Ajustes</string>
+    <string name="about">Acerca de</string>
+    <string name="aboutMe">QuotationShake de Josep \n\n jmartor@inf.upv.es \n\n Desarrollado para DADM 2023</string>
+    <string name="logo_description">Logo de QuotationShake</string>
+    <string name="welcomeMessage">Hola %1s!, \n\nRefresca para obtener una nueva cita\n\n(Desliza hacia abajo o ves al menú)</string>
+    <string name="refresh">Refresca</string>
+    <string name="eliminar_todos">Elimina todos</string>
+</resources>
