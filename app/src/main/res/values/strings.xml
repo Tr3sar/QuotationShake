@@ -11,4 +11,5 @@
     <string name="refresh">Refresh</string>
     <string name="eliminar_todos">Delete all</string>
     <string name="quotationError">Error creating quotation</string>
+    <string name="internetException">There is no internet connection available</string>
 </resources>

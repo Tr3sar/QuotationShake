@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.snackbar.Snackbar
 import dadm.jmartor.QuotationShake.R
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.utils.NoInternetException
 import dadm.jmartor.QuotationShake.databinding.FragmentNewQuotationBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,9 +59,25 @@ class NewQuotationFragment: Fragment(R.layout.fragment_new_quotation), MenuProvi
         requireActivity().addMenuProvider(this,
             viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        viewModel.containsErrors.observe(viewLifecycleOwner) {
-            if(it != null) {
-                Snackbar.make(binding.root, R.string.quotationError, Snackbar.LENGTH_SHORT).show()
+        viewModel.containsErrors.observe(viewLifecycleOwner) { error ->
+            if(error != null) {
+                when (error) {
+                    is NoInternetException -> {
+                        Snackbar.make(
+                            binding.root,
+                            R.string.internetException,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {
+                        Snackbar.make(
+                            binding.root,
+                            R.string.quotationError,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
                 viewModel.resetError()
             }
         }
