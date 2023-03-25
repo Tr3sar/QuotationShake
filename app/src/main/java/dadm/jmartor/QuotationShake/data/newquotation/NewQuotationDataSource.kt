@@ -4,5 +4,5 @@ import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation
 import retrofit2.Response
 
 interface NewQuotationDataSource {
-    suspend fun getQuotation():Response<QuotationDto>
+    suspend fun getQuotation(language: String):Response<QuotationDto>
 }
