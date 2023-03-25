@@ -1,5 +1,7 @@
 package dadm.jmartor.dadm.jmartor.QuotationShake.di
 
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationDataSource
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationDataSourceImpl
 import dadm.jmartor.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationRepository
 import dadm.jmartor.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationRepositoryImpl
 import dagger.Binds
@@ -12,4 +14,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class NewQuotationBinderModule {
     @Binds
     abstract fun bindNewQuotationRepository(repository: NewQuotationRepositoryImpl) : NewQuotationRepository
+    @Binds
+    abstract fun bindNewQuotationDataSource(dataSource: NewQuotationDataSourceImpl): NewQuotationDataSource
 }
