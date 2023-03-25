@@ -1,3 +1,5 @@
+package dadm.jmartor.QuotationShake
+
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 

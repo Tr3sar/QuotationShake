@@ -9,4 +9,5 @@
     <string name="welcomeMessage">Hola %1s!, \n\nRefresca para obtener una nueva cita\n\n(Desliza hacia abajo o ves al menú)</string>
     <string name="refresh">Refresca</string>
     <string name="eliminar_todos">Elimina todos</string>
+    <string name="quotationError">Error creando la cita</string>
 </resources>

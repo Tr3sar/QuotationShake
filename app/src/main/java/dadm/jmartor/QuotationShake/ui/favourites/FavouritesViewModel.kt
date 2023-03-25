@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class FavouritesViewModel @Inject constructor() : ViewModel() {
+class FavouritesViewModel @Inject() constructor(): ViewModel() {
 
     private val _favList = MutableLiveData<List<Quotation>>(getFavouriteQuotations())
 
