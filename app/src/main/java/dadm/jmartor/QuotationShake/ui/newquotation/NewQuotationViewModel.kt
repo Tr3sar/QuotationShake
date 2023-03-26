@@ -1,6 +1,7 @@
 package dadm.jmartor.QuotationShake.ui.newquotation
 
 import androidx.lifecycle.*
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.favourites.FavouritesRepository
 import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationManager
 import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.settings.SettingsRepository
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
@@ -10,7 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager,
-                                                  var settingsRepository: SettingsRepository): ViewModel() {
+                                                  var settingsRepository: SettingsRepository,
+                                                var favouritesRepository: FavouritesRepository): ViewModel() {
 
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
     private val _iconoVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
@@ -62,7 +64,14 @@ class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager
     }
 
     fun addToFavorites() {
-        _botonVisible.value = false
+        viewModelScope.launch {
+            try {
+                favouritesRepository.insertQuotation(quotation.value!!)
+                _iconoVisible.value = false
+            } catch (e: Exception) {
+                _containsErrors.value = e
+            }
+        }
     }
 
     private fun getUserName(): String {
