@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:useSimpleSummaryProvider="true"
+    <EditTextPreference
+        android:key="username"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:hint="@string/hintUsername"
+        android:title="@string/username_preference" />
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/names"
+        android:entryValues="@array/names"
+        android:key="language"
+        app:defaultValue="en"
+        android:hint="@string/hintLanguage"
+        android:title="@string/lang_preference" />
+</PreferenceScreen>

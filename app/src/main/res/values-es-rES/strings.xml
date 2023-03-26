@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="english">Inglés</string>
+    <string name="russian">Ruso</string>
     <string name="new_quotation">Citas</string>
     <string name="favourites">Favoritas</string>
     <string name="settings">Ajustes</string>
@@ -11,4 +13,8 @@
     <string name="eliminar_todos">Elimina todos</string>
     <string name="quotationError">Error creando la cita</string>
     <string name="internetException">No hay conexión a internet</string>
+    <string name="username_preference">Nombre de usuario</string>
+    <string name="lang_preference">Idioma</string>
+    <string name="hintUsername">Escribe un nombre de usuario</string>
+    <string name="hintLanguage">Selecciona un idioma</string>
 </resources>

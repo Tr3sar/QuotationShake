@@ -12,4 +12,8 @@
     <string name="eliminar_todos">Delete all</string>
     <string name="quotationError">Error creating quotation</string>
     <string name="internetException">There is no internet connection available</string>
+    <string name="username_preference">Username</string>
+    <string name="lang_preference">Language</string>
+    <string name="hintUsername">Enter an username</string>
+    <string name="hintLanguage">Select your preferred language</string>
 </resources>
