@@ -9,9 +9,8 @@
         android:hint="@string/hintUsername"
         android:title="@string/username_preference" />
     <ListPreference
-        android:defaultValue="1"
         android:entries="@array/names"
-        android:entryValues="@array/names"
+        android:entryValues="@array/abreviations"
         android:key="language"
         app:defaultValue="en"
         android:hint="@string/hintLanguage"

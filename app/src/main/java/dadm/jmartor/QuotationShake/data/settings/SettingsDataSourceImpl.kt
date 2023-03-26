@@ -24,9 +24,25 @@ class SettingsDataSourceImpl @Inject constructor(private val sharedPreferences: 
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
     }.flowOn(Dispatchers.IO)
 
+    override fun getLanguage(): Flow<String> = callbackFlow {
+        val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            launch(Dispatchers.IO) {
+                if (LANGUAGE == key) {
+                    trySend(getLanguagePreference())
+                }
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+        trySend(getLanguagePreference())
+        awaitClose {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
+    }.flowOn(Dispatchers.IO)
+
     fun getUsernamePreference() = sharedPreferences.getString(USERNAME, "") ?: ""
+    fun getLanguagePreference() = sharedPreferences.getString(LANGUAGE, "") ?: ""
 
     companion object {
         private const val USERNAME = "username"
+        private const val LANGUAGE = "language"
     }
 }

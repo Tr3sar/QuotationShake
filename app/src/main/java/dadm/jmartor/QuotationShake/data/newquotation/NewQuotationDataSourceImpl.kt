@@ -1,5 +1,6 @@
 package dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation
 
+import android.util.Log
 import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation.model.QuotationDto
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
 import okhttp3.MediaType
@@ -17,14 +18,15 @@ class NewQuotationDataSourceImpl @Inject() constructor(var retrofit: Retrofit): 
         @GET("api/1.0/?method=getQuote&format=json")
         suspend fun getQuotation(@Query("lang") language: String): Response<QuotationDto>
     }
-    override suspend fun getQuotation( language: String): Response<QuotationDto> {
-        return try {
+    override suspend fun getQuotation( language: String): Response<QuotationDto> =
+         try {
+             Log.i("LANGUAGE", language)
             retrofitQuotationService.getQuotation(language)
         } catch (e: Exception) {
+            Log.e("ERROR", "Error getQuotation NewQuotationDataSourceImpl")
             Response.error(
                 400, // Could be any other code and text, because we are not using it
                 ResponseBody.create(MediaType.parse("text/plain"), e.toString())
             )
         }
-    }
 }

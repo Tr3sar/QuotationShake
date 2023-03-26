@@ -1,15 +1,15 @@
 package dadm.jmartor.QuotationShake.ui.newquotation
 
 import androidx.lifecycle.*
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationManager
 import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.settings.SettingsRepository
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
-import dadm.jmartor.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewQuotationViewModel @Inject constructor(var repository: NewQuotationRepository,
+class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager,
                                                   var settingsRepository: SettingsRepository): ViewModel() {
 
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
@@ -50,7 +50,7 @@ class NewQuotationViewModel @Inject constructor(var repository: NewQuotationRepo
         //val num = (0..99).random().toString()
         //_quotation.value = Quotation(num, "Quotation text #$num", "Author #$num")
         viewModelScope.launch {
-            repository.getNewQuotation().fold(onSuccess = {
+            manager.getNewQuotation().fold(onSuccess = {
                 _quotation.value = it
             }, onFailure = {
                 _containsErrors.value = it

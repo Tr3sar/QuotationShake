@@ -9,9 +9,8 @@ import javax.inject.Inject
 
 class NewQuotationRepositoryImpl @Inject() constructor(
     var dataSource: NewQuotationDataSource, var connectivityChecker: ConnectivityChecker) : NewQuotationRepository{
-    override suspend fun getNewQuotation(): Result<Quotation> =
+    override suspend fun getNewQuotation(language: String): Result<Quotation> =
         if  (connectivityChecker.isConnectionAvailable()) {
-            val language = arrayOf("en", "ru", "xx").random()
             dataSource.getQuotation(language).toDomain()
         }
         else Result.failure(NoInternetException())

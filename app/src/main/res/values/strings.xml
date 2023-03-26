@@ -16,4 +16,9 @@
     <string name="lang_preference">Language</string>
     <string name="hintUsername">Enter an username</string>
     <string name="hintLanguage">Select your preferred language</string>
+
+    <string name="en" translatable="false">en</string>
+    <string name="ru" translatable="false">ru</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
 </resources>
