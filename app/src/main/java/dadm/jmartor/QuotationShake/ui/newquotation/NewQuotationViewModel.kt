@@ -1,6 +1,7 @@
 package dadm.jmartor.QuotationShake.ui.newquotation
 
 import androidx.lifecycle.*
+import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.settings.SettingsRepository
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
 import dadm.jmartor.dadm.jmartor.QuotationShake.data.newquotation.NewQuotationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,19 +9,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NewQuotationViewModel @Inject() constructor(var repository: NewQuotationRepository): ViewModel() {
-    private val _username: MutableLiveData<String> = MutableLiveData<String>(getUserName())
+class NewQuotationViewModel @Inject constructor(var repository: NewQuotationRepository,
+                                                  var settingsRepository: SettingsRepository): ViewModel() {
+
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
     private val _iconoVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     private val _botonVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     private val _containsErrors: MutableLiveData<Throwable?> = MutableLiveData<Throwable?>()
 
-
-    val userName: LiveData<String>
-        get() {
-            return _username
-        }
-
+    val userName: LiveData<String> = settingsRepository.getUsername().asLiveData()
     val quotation: LiveData<Quotation>
         get() {
             return _quotation
