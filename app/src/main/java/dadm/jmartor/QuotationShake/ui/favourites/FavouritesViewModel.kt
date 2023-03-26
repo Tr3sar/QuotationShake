@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import dadm.jmartor.QuotationShake.dadm.jmartor.QuotationShake.data.favourites.FavouritesRepository
 import dadm.jmartor.QuotationShake.ui.domain.model.Quotation
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +19,9 @@ class FavouritesViewModel @Inject() constructor(var favouritesRepository: Favour
         }
 
     fun deleteAllQuotations() {
-        //_favList.value = mutableListOf<Quotation>()
+        viewModelScope.launch {
+            favouritesRepository.deleteAllQuotations()
+        }
     }
 
     fun dismiss() {
@@ -26,8 +29,8 @@ class FavouritesViewModel @Inject() constructor(var favouritesRepository: Favour
     }
 
     fun deleteQuotationAtPost(position: Int) {
-        //val list = _favList.value?.toMutableList()
-        //list?.removeAt(position)
-        //_favList.value = list!!
+        viewModelScope.launch {
+            favList.value?.toMutableList()?.get(position)?.let { favouritesRepository.deleteQuotation(it) }
+        }
     }
 }
