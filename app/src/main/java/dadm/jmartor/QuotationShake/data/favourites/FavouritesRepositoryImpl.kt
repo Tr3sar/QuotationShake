@@ -22,9 +22,9 @@ class FavouritesRepositoryImpl @Inject constructor(var favouritesDataSource: Fav
         }
     }
 
-    override fun getQuotationById(id: String): Flow<Quotation> {
+    override fun getQuotationById(id: String): Flow<Quotation?> {
         return favouritesDataSource.getQuotationById(id).map { dto ->
-            dto.toDomain()
+            dto?.toDomain()
         }
     }
 

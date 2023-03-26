@@ -48,7 +48,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_add_24"
             android:layout_gravity="bottom|end"
-            android:contentDescription="Botón para añadir nuevas citas"/>
+            android:contentDescription="Botón para añadir nuevas citas"
+            android:visibility="invisible"/>
     </FrameLayout>
 
     <TextView

@@ -16,7 +16,6 @@ class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager
 
     private val _quotation: MutableLiveData<Quotation> = MutableLiveData<Quotation>()
     private val _iconoVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    private val _botonVisible: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     private val _containsErrors: MutableLiveData<Throwable?> = MutableLiveData<Throwable?>()
 
     val userName: LiveData<String> = settingsRepository.getUsername().asLiveData()
@@ -35,10 +34,11 @@ class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager
             return Transformations.map(quotation) { it == null }
         }
 
-    val botonVisible: LiveData<Boolean>
-        get() {
-            return _botonVisible
-        }
+    val botonVisible = quotation.switchMap() { newQuotation ->
+        favouritesRepository.getQuotationById(newQuotation.id).asLiveData()
+    }.map() { favourite ->
+        favourite == null
+    }
 
     val containsErrors: LiveData<Throwable?>
         get() {
@@ -60,7 +60,6 @@ class NewQuotationViewModel @Inject constructor(var manager: NewQuotationManager
         }
 
         _iconoVisible.value = false
-        _botonVisible.value = true
     }
 
     fun addToFavorites() {
